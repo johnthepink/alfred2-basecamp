@@ -61,7 +61,7 @@
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
-				<integer>62</integer>
+				<integer>0</integer>
 				<key>keyword</key>
 				<string>bc</string>
 				<key>runningsubtext</key>
@@ -106,7 +106,7 @@ basecamp_company_ids=[your single id or ids comma separated like 12,23,34]
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>1. Right click on the “bc” Script Filter and click “Configure”.
+	<string>1. Right click on the bc Script Filter and click Configure.
 2. Fill out your Basecamp information. Note that if you belong to more than one organization, you can enter them separated by commas.
 3. Have fun.
 
