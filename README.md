@@ -1,6 +1,4 @@
-# Alfred 2 Basecamp Workflow 
-
-![basecamp](workflow/icon.png)
+# Alfred 2 Basecamp Workflow <img src="workflow/icon.png" width="50px" />
 
 Provides easy access to Basecamp Projects inside Alfred 2 (plus caching!).
 
