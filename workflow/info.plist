@@ -12,22 +12,19 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>42D05639-3F0F-4760-8214-317167E4173D</string>
+				<string>3E69A235-58EA-4209-9996-A528C69641C2</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
-		</array>
-		<key>BA17BE41-176A-4E9A-B958-A3F0BEA36829</key>
-		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>42D05639-3F0F-4760-8214-317167E4173D</string>
+				<string>939384BB-BF21-4343-98F2-AC0CAE007C94</string>
 				<key>modifiers</key>
-				<integer>0</integer>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string></string>
+				<string>Copy to clipboard</string>
 			</dict>
 		</array>
 	</dict>
@@ -44,25 +41,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
+				<key>plusspaces</key>
 				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
+				<key>url</key>
 				<string>{query}</string>
-				<key>title</key>
-				<string>Ruby Script</string>
+				<key>utf8</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>42D05639-3F0F-4760-8214-317167E4173D</string>
+			<string>3E69A235-58EA-4209-9996-A528C69641C2</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -70,19 +59,24 @@
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>escaping</key>
 				<integer>62</integer>
 				<key>keyword</key>
-				<string>test feedback</string>
+				<string>bc</string>
 				<key>runningsubtext</key>
-				<string>working...</string>
+				<string>loading...</string>
 				<key>script</key>
-				<string>/usr/bin/ruby ./main.rb {query}</string>
+				<string>basecamp_username=[your username]
+basecamp_password=[your password]
+basecamp_email=[your email]
+basecamp_company_ids=[your single id or ids comma separated like 12,23,34]
+
+/usr/bin/ruby ./main.rb "{query}" $basecamp_username $basecamp_password $basecamp_email $basecamp_company_ids</string>
 				<key>subtext</key>
-				<string>Ruby Based Workflow Template</string>
+				<string>Open Basecamp Projecdts</string>
 				<key>title</key>
-				<string>Test Alfred Feedback</string>
+				<string>Basecamp</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -98,54 +92,44 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>keyword</key>
-				<string>test rescue feedback</string>
-				<key>runningsubtext</key>
-				<string>...</string>
-				<key>script</key>
-				<string>/usr/bin/ruby ./main_with_rescue_feedback.rb {query}</string>
-				<key>subtext</key>
-				<string>Ruby Based Workflow Template</string>
-				<key>title</key>
-				<string>Test Alfred Rescue Feedback</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
+				<key>autopaste</key>
 				<false/>
+				<key>clipboardtext</key>
+				<string></string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>BA17BE41-176A-4E9A-B958-A3F0BEA36829</string>
+			<string>939384BB-BF21-4343-98F2-AC0CAE007C94</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>1. Right click on the “bc” Script Filter and click “Configure”.
+2. Fill out your Basecamp information. Note that if you belong to more than one organization, you can enter them separated by commas.
+3. Have fun.
+
+This will cache your results, so if you need to refresh start your query with: !</string>
 	<key>uidata</key>
 	<dict>
 		<key>21557827-8003-42B7-A042-16D4C9278FEC</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>160</real>
 		</dict>
-		<key>42D05639-3F0F-4760-8214-317167E4173D</key>
+		<key>3E69A235-58EA-4209-9996-A528C69641C2</key>
 		<dict>
 			<key>ypos</key>
-			<real>140</real>
+			<real>20</real>
 		</dict>
-		<key>BA17BE41-176A-4E9A-B958-A3F0BEA36829</key>
+		<key>939384BB-BF21-4343-98F2-AC0CAE007C94</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>200</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>http://github.com/johnthepink/alfred2-basecamp</string>
+	<string>https://github.com/johnthepink/alfred2-basecamp</string>
 </dict>
 </plist>
