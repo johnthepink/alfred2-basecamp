@@ -4,7 +4,7 @@ Provides easy access to Basecamp Projects inside Alfred 2 (plus caching!).
 
 ## Getting Started
 
-Download this [bad boy](), and open to install. Then:
+Download this [bad boy](https://github.com/johnthepink/alfred2-basecamp/raw/master/alfred2-basecamp.alfredworkflow), and open to install. Then:
 
 1. Right click on the “bc” Script Filter and click “Configure”.
 2. Fill out your Basecamp information. Note that if you belong to more than one organization, you can enter them separated by commas.
