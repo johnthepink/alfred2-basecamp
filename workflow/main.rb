@@ -63,7 +63,7 @@ Alfred.with_friendly_error do |alfred|
 
   alfred.with_rescue_feedback = true
   alfred.with_cached_feedback do
-    use_cache_file :expire => 3600
+    use_cache_file :expire => 86400
   end
 
   if !is_refresh and fb = alfred.feedback.get_cached_feedback
