@@ -2,6 +2,8 @@
 
 Provides easy access to Basecamp Projects inside Alfred 2 (plus caching!).
 
+![Screenshot](workflow/screenshot.png)
+
 ## Getting Started
 
 Download this [bad boy](https://github.com/johnthepink/alfred2-basecamp/raw/master/alfred2-basecamp.alfredworkflow), and open to install. Then:
