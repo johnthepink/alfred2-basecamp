@@ -74,7 +74,7 @@ basecamp_company_ids=[your single id or ids comma separated like 12,23,34]
 
 /usr/bin/ruby ./main.rb "{query}" $basecamp_username $basecamp_password $basecamp_email $basecamp_company_ids</string>
 				<key>subtext</key>
-				<string>Open Basecamp Projecdts</string>
+				<string>Open Basecamp Projects</string>
 				<key>title</key>
 				<string>Basecamp</string>
 				<key>type</key>
