@@ -64,15 +64,22 @@
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>bc</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>loading...</string>
 				<key>script</key>
-				<string>basecamp_username=[your username]
-basecamp_password=[your password]
-basecamp_email=[your email]
-basecamp_company_ids=[your single id or ids comma separated like 12,23,34]
+				<string>basecamp_token=""
+basecamp2_company_ids=""
+basecamp3_company_ids=""
 
-/usr/bin/ruby ./main.rb "{query}" $basecamp_username $basecamp_password $basecamp_email $basecamp_company_ids</string>
+/usr/bin/ruby ./main.rb "{query}" "$basecamp_token" "$basecamp2_company_ids" "$basecamp3_company_ids"</string>
 				<key>subtext</key>
 				<string>Open Basecamp Projects</string>
 				<key>title</key>

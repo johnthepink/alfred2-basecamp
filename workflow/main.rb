@@ -3,7 +3,7 @@
 
 ($LOAD_PATH << File.expand_path("..", __FILE__)).uniq!
 
-require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
+require "rubygems" unless defined? Gem # rubygems is only needed in 1.8
 require "bundle/bundler/setup"
 require "alfred"
 require "net/http"
@@ -20,21 +20,28 @@ Alfred.with_friendly_error do |alfred|
 
   # contants
   QUERY = ARGV[0]
-  BASECAMP_USERNAME = ARGV[1]
-  BASECAMP_PASSWORD = ARGV[2]
-  BASECAMP_EMAIL = ARGV[3]
-  BASECAMP_COMPANY_IDS = ARGV[4].split(",")
+  BASECAMP_TOKEN = ARGV[1]
+  BASECAMP2_COMPANY_IDS = ARGV[2].split(",")
+  BASECAMP3_COMPANY_IDS = ARGV[3].split(",")
 
-  def get_project_json(company_id)
+  def get_uri(api, company_id)
+    if api == 2
+      URI("https://basecamp.com/#{company_id}/api/v1/projects.json")
+    else
+      URI("https://3.basecamp.com/#{company_id}/projects.json")
+    end
+  end
+
+  def get_project_json(api, company_id)
     # setup URI
-    uri = URI("https://basecamp.com/#{company_id}/api/v1/projects.json")
+    uri = get_uri(api, company_id)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
 
     # setup request
     request = Net::HTTP::Get.new(uri.request_uri)
-    request.basic_auth(BASECAMP_USERNAME, BASECAMP_PASSWORD)
-    request["User-Agent"] = "Alfred App (#{BASECAMP_EMAIL})"
+    request["User-Agent"] = "Alfred App (john.pinkerton@me.com)"
+    request["Authorization"] = "Bearer #{BASECAMP_TOKEN}"
 
     # make request
     response = http.request(request)
@@ -43,15 +50,24 @@ Alfred.with_friendly_error do |alfred|
 
   def load_projects(alfred)
     fb = alfred.feedback
-    projects_collection = BASECAMP_COMPANY_IDS.map{ |company| get_project_json(company) }
+
+    b2_projects = BASECAMP2_COMPANY_IDS.map{ |company|
+      get_project_json(2, company)
+    }
+
+    b3_projects = BASECAMP3_COMPANY_IDS.map{ |company|
+      get_project_json(3, company)
+    }
+
+    projects_collection = b2_projects + b3_projects
 
     projects_collection.each do |projects|
       projects.each do |project|
         fb.add_item({
           :uid => project["id"],
           :title => project["name"],
-          :subtitle => project["app_url"],
-          :arg => project["app_url"],
+          :subtitle => project["app_url"] || project["url"],
+          :arg => project["app_url"] || project["url"],
           :autocomplete => project["name"],
           :valid => "yes"
         })
@@ -59,6 +75,20 @@ Alfred.with_friendly_error do |alfred|
     end
 
     fb
+  end
+
+  if BASECAMP_TOKEN == ""
+    fb = alfred.feedback
+
+    fb.add_item({
+      :uid => "gettoken",
+      :title => "You need a token",
+      :subtitle => "Press enter and follow the instructions",
+      :arg => "https://alfred2-basecamp-auth.herokuapp.com"
+    })
+
+    puts fb.to_alfred
+    exit
   end
 
   alfred.with_rescue_feedback = true
@@ -75,6 +105,3 @@ Alfred.with_friendly_error do |alfred|
     puts fb.to_alfred(ARGV[0])
   end
 end
-
-
-
