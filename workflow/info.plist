@@ -76,10 +76,15 @@
 				<string>loading...</string>
 				<key>script</key>
 				<string>basecamp_token=""
+
+# id or id,id,id
 basecamp2_company_ids=""
+
+# id or id,id,id
 basecamp3_company_ids=""
 
-/usr/bin/ruby ./main.rb "{query}" "$basecamp_token" "$basecamp2_company_ids" "$basecamp3_company_ids"</string>
+/usr/bin/ruby ./main.rb "{query}" "$basecamp_token" "$basecamp2_company_ids" "$basecamp3_company_ids"
+</string>
 				<key>subtext</key>
 				<string>Open Basecamp Projects</string>
 				<key>title</key>
