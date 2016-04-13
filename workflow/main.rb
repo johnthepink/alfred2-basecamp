@@ -26,26 +26,27 @@ Alfred.with_friendly_error do |alfred|
 
   def get_uri(api, company_id)
     if api == 2
-      URI("https://basecamp.com/#{company_id}/api/v1/projects.json")
+      "https://basecamp.com/#{company_id}/api/v1/projects.json"
     else
-      URI("https://3.basecamp.com/#{company_id}/projects.json")
+      "https://3.basecampapi.com/#{company_id}/projects.json"
     end
   end
 
   def get_project_json(api, company_id)
-    # setup URI
     uri = get_uri(api, company_id)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
 
-    # setup request
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request["User-Agent"] = "Alfred App (john.pinkerton@me.com)"
-    request["Authorization"] = "Bearer #{BASECAMP_TOKEN}"
+    # use system curl because system ruby on osx is 2.0.0
+    # 2.0.0 does not have updated openssl bindings for Net:HTTP
+    # el capitan has an issue with libcurl based solutions finding libcurl
+    # so, just curl the joker
+    request = <<-EOF
+      curl -s -H "Authorization: Bearer #{BASECAMP_TOKEN}" \
+      -H 'User-Agent: alfred2-basecamp (john.pinkerton@me.com)' \
+      #{uri}
+    EOF
 
-    # make request
-    response = http.request(request)
-    JSON.parse(response.body)
+    response = `#{request}`
+    JSON.parse(response)
   end
 
   def load_projects(alfred)
@@ -63,11 +64,13 @@ Alfred.with_friendly_error do |alfred|
 
     projects_collection.each do |projects|
       projects.each do |project|
+        url = project["app_url"] || project["url"]
+        url.sub!("basecampapi", "basecamp") if url.include?("basecampapi")
         fb.add_item({
           :uid => project["id"],
           :title => project["name"],
-          :subtitle => project["app_url"] || project["url"],
-          :arg => project["app_url"] || project["url"],
+          :subtitle => url,
+          :arg => url,
           :autocomplete => project["name"],
           :valid => "yes"
         })
