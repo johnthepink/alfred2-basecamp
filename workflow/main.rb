@@ -11,6 +11,8 @@ require "json"
 
 Alfred.with_friendly_error do |alfred|
 
+  ALFRED = alfred
+
   # prepend ! in query to refresh
   is_refresh = false
   if ARGV[0].start_with? '!'
@@ -46,11 +48,17 @@ Alfred.with_friendly_error do |alfred|
     EOF
 
     response = `#{request}`
-    JSON.parse(response)
+    parsed = JSON.parse(response)
+
+    begin
+      throw_token_error if parsed["error"]
+    rescue
+      parsed
+    end
   end
 
-  def load_projects(alfred)
-    fb = alfred.feedback
+  def load_projects
+    fb = ALFRED.feedback
 
     b2_projects = BASECAMP2_COMPANY_IDS.map{ |company|
       get_project_json(2, company)
@@ -80,12 +88,18 @@ Alfred.with_friendly_error do |alfred|
     fb
   end
 
-  if BASECAMP_TOKEN == ""
-    fb = alfred.feedback
+  def throw_token_error
+    fb = ALFRED.feedback
+
+    if BASECAMP_TOKEN != ""
+      title = "You need a new token"
+    else
+      title = "You need a token"
+    end
 
     fb.add_item({
       :uid => "gettoken",
-      :title => "You need a token",
+      :title => title,
       :subtitle => "Press enter and follow the instructions",
       :arg => "https://alfred2-basecamp-auth.herokuapp.com"
     })
@@ -94,16 +108,18 @@ Alfred.with_friendly_error do |alfred|
     exit
   end
 
-  alfred.with_rescue_feedback = true
-  alfred.with_cached_feedback do
+  throw_token_error if BASECAMP_TOKEN == ""
+
+  ALFRED.with_rescue_feedback = true
+  ALFRED.with_cached_feedback do
     use_cache_file :expire => 86400
   end
 
-  if !is_refresh and fb = alfred.feedback.get_cached_feedback
+  if !is_refresh and fb = ALFRED.feedback.get_cached_feedback
     # cached feedback is valid
     puts fb.to_alfred(ARGV[0])
   else
-    fb = load_projects(alfred)
+    fb = load_projects
     fb.put_cached_feedback
     puts fb.to_alfred(ARGV[0])
   end
