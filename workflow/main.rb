@@ -6,8 +6,8 @@
 require "rubygems" unless defined? Gem # rubygems is only needed in 1.8
 require "bundle/bundler/setup"
 require "alfred"
-require "net/http"
 require "json"
+require "plist"
 
 Alfred.with_friendly_error do |alfred|
 
@@ -26,6 +26,25 @@ Alfred.with_friendly_error do |alfred|
   BASECAMP2_COMPANY_IDS = ARGV[2].split(",")
   BASECAMP3_COMPANY_IDS = ARGV[3].split(",")
 
+  def write_token(token)
+    File.open("token.txt", 'w') { |file| file.write(token) }
+  end
+
+  def get_token
+    begin
+      token = File.readlines('token.txt')[0]
+    rescue
+      token = ""
+    end
+
+    if token == ""
+      token = BASECAMP_TOKEN
+      write_token(BASECAMP_TOKEN)
+    end
+
+    token
+  end
+
   def get_uri(api, company_id)
     if api == 2
       "https://basecamp.com/#{company_id}/api/v1/projects.json"
@@ -42,7 +61,7 @@ Alfred.with_friendly_error do |alfred|
     # el capitan has an issue with libcurl based solutions finding libcurl
     # so, just curl the joker
     request = <<-EOF
-      curl -s -H "Authorization: Bearer #{BASECAMP_TOKEN}" \
+      curl -s -H "Authorization: Bearer #{get_token}" \
       -H 'User-Agent: alfred2-basecamp (john.pinkerton@me.com)' \
       #{uri}
     EOF
