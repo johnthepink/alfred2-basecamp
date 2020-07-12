@@ -6,7 +6,7 @@
 require "rubygems" unless defined? Gem # rubygems is only needed in 1.8
 require "bundle/bundler/setup"
 require "alfred"
-require "net/http"
+require 'httpclient'
 require "json"
 
 Alfred.with_friendly_error do |alfred|
@@ -35,20 +35,23 @@ Alfred.with_friendly_error do |alfred|
   end
 
   def get_project_json(api, company_id)
+    client = HTTPClient.new
+    client = HTTPClient.new default_header: {"User-Agent" => "alfred2-basecamp (john.pinkerton@me.com)"}
+    client = HTTPClient.new default_header: {"Authorization" => "Bearer #{BASECAMP_TOKEN}"}
+
     uri = get_uri(api, company_id)
+    parsed = []
 
-    # use system curl because system ruby on osx is 2.0.0
-    # 2.0.0 does not have updated openssl bindings for Net:HTTP
-    # el capitan has an issue with libcurl based solutions finding libcurl
-    # so, just curl the joker
-    request = <<-EOF
-      curl -s -H "Authorization: Bearer #{BASECAMP_TOKEN}" \
-      -H 'User-Agent: alfred2-basecamp (john.pinkerton@me.com)' \
-      #{uri}
-    EOF
+    loop do
+      res = client.request 'GET', uri
+      parsed += JSON.parse(res.body)
 
-    response = `#{request}`
-    parsed = JSON.parse(response)
+      # https://github.com/basecamp/bc3-api/blob/master/README.md#pagination
+      link_header = res.header['Link'][0]
+      break if (link_header.nil? || link_header.empty?)
+      end_index = link_header.index('>');
+      uri = link_header[1..end_index]
+    end
 
     begin
       throw_token_error if parsed["error"]
