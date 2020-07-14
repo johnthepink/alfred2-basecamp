@@ -36,6 +36,12 @@ task "bundle:install" => [:chdir] do
   sh %Q{bundle install --standalone --clean} do |ok, res|
     if ! ok
       puts "fail to install gems (status = #{res.exitstatus})"
+      return
+    end
+    sh %Q{./setup-override.sh} do |ok, res|
+      if ! ok
+        puts "fail to override setup (status = #{res.exitstatus})"
+      end
     end
   end
 end

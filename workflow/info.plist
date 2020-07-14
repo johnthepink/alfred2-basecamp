@@ -170,7 +170,7 @@ This will cache your results, so if you need to refresh start your query with: !
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.1.2</string>
+	<string>2.1.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/johnthepink/alfred2-basecamp</string>
 </dict>
