@@ -17,6 +17,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -25,6 +27,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Copy to clipboard</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -41,8 +45,10 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>plusspaces</key>
-				<false/>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
 				<key>url</key>
 				<string>{query}</string>
 				<key>utf8</key>
@@ -53,11 +59,19 @@
 			<key>uid</key>
 			<string>3E69A235-58EA-4209-9996-A528C69641C2</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -75,16 +89,20 @@
 				<key>runningsubtext</key>
 				<string>loading...</string>
 				<key>script</key>
-				<string>basecamp_token=""
+				<string>basecamp_token="BAhbB0kiAdR7ImNsaWVudF9pZCI6IjY3MzNkZjYwNTE0YzE0MDA1NmQzZThjOGJhMGFhMzlmNDY4YmY2ODkiLCJleHBpcmVzX2F0IjoiMjAyMC0wNy0yOFQwMTo1ODoxMloiLCJ1c2VyX2lkcyI6WzE5MzAyMTA1LDE5NDA5NTAxLDI1NTQ2MjUzLDI3NzM4OTY3LDQwNzU0MDgxXSwidmVyc2lvbiI6MSwiYXBpX2RlYWRib2x0IjoiMDg1OWUxYWIyZTZmNjM3YmI2ZTVlOTExNzcxMDUwOTcifQY6BkVUSXU6CVRpbWUNgRsewH/Mx+gJOg1uYW5vX251bWkCawM6DW5hbm9fZGVuaQY6DXN1Ym1pY3JvIgeHUDoJem9uZUkiCFVUQwY7AEY=--ab156b47b11a55a0623eca0855d016752b258f42"
 
 # id or id,id,id
 basecamp2_company_ids=""
 
 # id or id,id,id
-basecamp3_company_ids=""
+basecamp3_company_ids="4329687"
 
 /usr/bin/ruby ./main.rb "{query}" "$basecamp_token" "$basecamp2_company_ids" "$basecamp3_company_ids"
 </string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Open Basecamp Projects</string>
 				<key>title</key>
@@ -99,7 +117,7 @@ basecamp3_company_ids=""
 			<key>uid</key>
 			<string>21557827-8003-42B7-A042-16D4C9278FEC</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -108,13 +126,15 @@ basecamp3_company_ids=""
 				<false/>
 				<key>clipboardtext</key>
 				<string></string>
+				<key>transient</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
 			<string>939384BB-BF21-4343-98F2-AC0CAE007C94</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -127,20 +147,30 @@ This will cache your results, so if you need to refresh start your query with: !
 	<dict>
 		<key>21557827-8003-42B7-A042-16D4C9278FEC</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>160</real>
 		</dict>
 		<key>3E69A235-58EA-4209-9996-A528C69641C2</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>20</real>
 		</dict>
 		<key>939384BB-BF21-4343-98F2-AC0CAE007C94</key>
 		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
 			<key>ypos</key>
 			<real>200</real>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>2.2.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/johnthepink/alfred2-basecamp</string>
 </dict>

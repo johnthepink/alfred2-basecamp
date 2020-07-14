@@ -78,5 +78,3 @@ task :clobber => [:clean] do
   rmtree File.join($config["path"], ".bundle")
   rmtree File.join($config["path"], "bundle")
 end
-
-
