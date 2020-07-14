@@ -89,13 +89,13 @@
 				<key>runningsubtext</key>
 				<string>loading...</string>
 				<key>script</key>
-				<string>basecamp_token="BAhbB0kiAdR7ImNsaWVudF9pZCI6IjY3MzNkZjYwNTE0YzE0MDA1NmQzZThjOGJhMGFhMzlmNDY4YmY2ODkiLCJleHBpcmVzX2F0IjoiMjAyMC0wNy0yOFQwMTo1ODoxMloiLCJ1c2VyX2lkcyI6WzE5MzAyMTA1LDE5NDA5NTAxLDI1NTQ2MjUzLDI3NzM4OTY3LDQwNzU0MDgxXSwidmVyc2lvbiI6MSwiYXBpX2RlYWRib2x0IjoiMDg1OWUxYWIyZTZmNjM3YmI2ZTVlOTExNzcxMDUwOTcifQY6BkVUSXU6CVRpbWUNgRsewH/Mx+gJOg1uYW5vX251bWkCawM6DW5hbm9fZGVuaQY6DXN1Ym1pY3JvIgeHUDoJem9uZUkiCFVUQwY7AEY=--ab156b47b11a55a0623eca0855d016752b258f42"
+				<string>basecamp_token=""
 
 # id or id,id,id
 basecamp2_company_ids=""
 
 # id or id,id,id
-basecamp3_company_ids="4329687"
+basecamp3_company_ids=""
 
 /usr/bin/ruby ./main.rb "{query}" "$basecamp_token" "$basecamp2_company_ids" "$basecamp3_company_ids"
 </string>
@@ -170,7 +170,7 @@ This will cache your results, so if you need to refresh start your query with: !
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.2.2</string>
+	<string>2.1.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/johnthepink/alfred2-basecamp</string>
 </dict>
