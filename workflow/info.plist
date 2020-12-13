@@ -126,6 +126,8 @@ basecamp3_company_ids=""
 				<false/>
 				<key>clipboardtext</key>
 				<string></string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
