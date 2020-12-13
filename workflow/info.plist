@@ -126,6 +126,8 @@ basecamp3_company_ids=""
 				<false/>
 				<key>clipboardtext</key>
 				<string></string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -170,7 +172,7 @@ This will cache your results, so if you need to refresh start your query with: !
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.1.5</string>
+	<string>2.1.6</string>
 	<key>webaddress</key>
 	<string>https://github.com/johnthepink/alfred2-basecamp</string>
 </dict>

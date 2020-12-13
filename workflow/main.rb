@@ -107,7 +107,7 @@ Alfred.with_friendly_error do |alfred|
       :arg => "https://alfred2-basecamp-auth.herokuapp.com"
     })
 
-    puts fb.to_alfred
+    puts "<?xml version=\"1.0\"?>" + fb.to_alfred
     exit
   end
 
@@ -120,10 +120,10 @@ Alfred.with_friendly_error do |alfred|
 
   if !is_refresh and fb = ALFRED.feedback.get_cached_feedback
     # cached feedback is valid
-    puts fb.to_alfred(ARGV[0])
+    puts "<?xml version=\"1.0\"?>" + fb.to_alfred(ARGV[0])
   else
     fb = load_projects
     fb.put_cached_feedback
-    puts fb.to_alfred(ARGV[0])
+    puts "<?xml version=\"1.0\"?>" + fb.to_alfred(ARGV[0])
   end
 end
